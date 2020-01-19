@@ -24,7 +24,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
             IEnumerable<(int, int)> seed = _cyclicSeedGenerator.GenerateSeed(roundCount / 4, participantCount / 4);
 
-            IEnumerable<BracketRound> rounds = seed.SelectMany((p, i) => FourRoundsFromSeed(p, participantCount, 4 * i + 1));
+            IEnumerable<BracketRound> rounds = seed.SelectMany((p, i) => FourRoundsFromSeed(p, participantCount / 4, 4 * i + 1));
             if (roundCount % 4 == 1)
             {
                 rounds = rounds.Prepend(ZeroRound(participantCount));
@@ -46,31 +46,23 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
                     })
             };
 
-        private static IEnumerable<BracketRound> FourRoundsFromSeed((int, int) seedPair, int participantCount, int shift)
+        private static IEnumerable<BracketRound> FourRoundsFromSeed((int, int) seedPair, int modulus, int shift)
         {
-            List<int> diff = new List<int> {
-                seedPair.Item1,
-                seedPair.Item2,
-                -seedPair.Item1,
-                -seedPair.Item2
-            };
+            List<int> diff = new List<int> { seedPair.Item1, seedPair.Item2, -seedPair.Item1, -seedPair.Item2 };
 
-            return Enumerable.Range(0, 4).Select(i =>
-                new BracketRound
+            return Enumerable.Range(0, 4).Select(i => new BracketRound
+            {
+                Games = Enumerable.Range(1, modulus).Select(j => new BracketGame
                 {
-                    Games = Enumerable.Range(1, participantCount / 4).Select(j =>
-                        new BracketGame
-                        {
-                            ParticipantNrs =
-                                new List<int>
-                                {
-                                    CoordinatesToNumber(((j + i + shift) % (participantCount / 4), 1)),
-                                    CoordinatesToNumber(((j + i + shift + diff[i % 4]) % (participantCount / 4), 2)),
-                                    CoordinatesToNumber(((j + i + shift + diff[i % 4] + diff[(i + 1) % 4]) % (participantCount / 4), 3)),
-                                    CoordinatesToNumber(((j + i + shift + diff[i % 4] + diff[(i + 1) % 4] + diff[(i + 2) % 4]) % (participantCount / 4), 4))
-                                }
-                        })
-                });
+                    ParticipantNrs = Enumerable.Range(0, 4)
+                        .Select(x => Enumerable.Range(i, x).Sum(y => diff[y % 4]))
+                        .Select(x => (x + j + i + shift) % modulus) // As `i` also contributes to shift
+                        .Zip(Enumerable.Range(1, 4))
+                        .Select(CoordinatesToNumber)
+                        .OrderBy(x => x)
+                        .ToList()
+                }).ToList()
+            });
         }
 
         private static int CoordinatesToNumber((int, int) coordinates) => coordinates.Item1 * 4 + coordinates.Item2;
