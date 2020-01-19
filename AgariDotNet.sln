@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic", "Logic\Logic.csproj", "{56326874-B078-4056-9E7E-1207CB003408}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{DC5D9730-D944-489D-806F-D45D07C43018}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Logic.Tests", "Logic.Tests\Logic.Tests.csproj", "{D613C682-18A7-4E20-9129-8DB498F8DE38}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,5 +23,12 @@ Global
 		{56326874-B078-4056-9E7E-1207CB003408}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56326874-B078-4056-9E7E-1207CB003408}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56326874-B078-4056-9E7E-1207CB003408}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D613C682-18A7-4E20-9129-8DB498F8DE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D613C682-18A7-4E20-9129-8DB498F8DE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D613C682-18A7-4E20-9129-8DB498F8DE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D613C682-18A7-4E20-9129-8DB498F8DE38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{D613C682-18A7-4E20-9129-8DB498F8DE38} = {DC5D9730-D944-489D-806F-D45D07C43018}
 	EndGlobalSection
 EndGlobal

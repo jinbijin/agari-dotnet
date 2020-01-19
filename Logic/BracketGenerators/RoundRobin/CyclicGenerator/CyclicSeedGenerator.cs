@@ -4,7 +4,8 @@ namespace Logic.BracketGenerators.RoundRobin.CyclicGenerator
 {
     public class CyclicSeedGenerator : ICyclicSeedGenerator
     {
-        public IEnumerable<(int, int)> GenerateSeed(int roundCount, int participantCount)
+        /// <exception cref="SeedNotFoundException"/>
+        public IEnumerable<(int, int)> GenerateSeed(int count, int modulus)
         {
             throw new System.NotImplementedException();
         }
