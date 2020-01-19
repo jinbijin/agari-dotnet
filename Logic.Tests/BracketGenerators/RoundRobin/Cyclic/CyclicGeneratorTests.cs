@@ -78,7 +78,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
             Bracket result = _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
-            result.Rounds.Should().OnlyContain(r => r.Games.Count() == participantCount);
+            result.Rounds.Should().OnlyContain(r => r.Games.Count() == participantCount / 4);
         }
 
         [Theory]
