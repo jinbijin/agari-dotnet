@@ -12,5 +12,7 @@
     <Folder Include="BracketGenerators\" />
     <Folder Include="BracketGenerators\RoundRobin\" />
     <Folder Include="BracketGenerators\RoundRobin\CyclicGenerator\" />
+    <Folder Include="Types\" />
+    <Folder Include="Types\Bracket\" />
   </ItemGroup>
 </Project>
