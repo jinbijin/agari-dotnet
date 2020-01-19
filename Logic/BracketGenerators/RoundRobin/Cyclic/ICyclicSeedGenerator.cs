@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Logic.BracketGenerators.RoundRobin.CyclicGenerator
+namespace Logic.BracketGenerators.RoundRobin.Cyclic
 {
     public interface ICyclicSeedGenerator
     {

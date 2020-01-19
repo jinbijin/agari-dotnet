@@ -2,14 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
-using Logic.BracketGenerators.RoundRobin.CyclicGenerator;
+using Logic.BracketGenerators.RoundRobin.Cyclic;
 using Xunit;
 
-namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
+namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 {
     public class CyclicSeedGeneratorTests
     {
         private readonly ICyclicSeedGenerator _cyclicSeedGenerator;
+
+        public static IEnumerable<object[]> SuccessData =>
+            new List<object[]>
+            {
+                new object[] { 1, 5 },
+                new object[] { 2, 12 },
+                new object[] { 3, 13 }
+            };
+
+        public static IEnumerable<object[]> FailureData =>
+            new List<object[]>
+            {
+                new object[] { 1, 4 },
+                new object[] { 2, 11 },
+                new object[] { 3, 12 }
+            };
 
         public CyclicSeedGeneratorTests()
         {
@@ -17,9 +33,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHaveCountPairs(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -28,9 +42,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHavePositiveEntries(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -39,9 +51,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHaveBoundedEntries(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -50,9 +60,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHaveIncreasingPairs(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -61,9 +69,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldBeIncreasing(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -72,9 +78,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHaveDistinctEntries(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -84,9 +88,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 5)]
-        [InlineData(2, 12)]
-        [InlineData(3, 13)]
+        [MemberData(nameof(SuccessData))]
         public void GenerateSeedShouldHaveDistinctSums(int count, int modulus)
         {
             IEnumerable<(int, int)> results = _cyclicSeedGenerator.GenerateSeed(count, modulus);
@@ -96,9 +98,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.CyclicGenerator
         }
 
         [Theory]
-        [InlineData(1, 4)]
-        [InlineData(2, 11)]
-        [InlineData(3, 12)]
+        [MemberData(nameof(FailureData))]
         public void GenerateSeedShouldThrowSeedNotFoundException(int count, int modulus)
         {
             Func<IEnumerable<(int, int)>> func = () => _cyclicSeedGenerator.GenerateSeed(count, modulus);

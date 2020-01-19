@@ -12,12 +12,13 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     <PackageReference Include="coverlet.collector" Version="1.0.1" />
     <PackageReference Include="FluentAssertions" Version="5.10.0" />
+    <PackageReference Include="Moq" Version="4.13.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="BracketGenerators\" />
     <Folder Include="BracketGenerators\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\CyclicGenerator\" />
+    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj" />

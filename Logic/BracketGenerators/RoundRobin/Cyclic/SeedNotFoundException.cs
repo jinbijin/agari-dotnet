@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.BracketGenerators.RoundRobin.CyclicGenerator
+namespace Logic.BracketGenerators.RoundRobin.Cyclic
 {
     public class SeedNotFoundException : Exception
     {

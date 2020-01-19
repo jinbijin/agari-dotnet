@@ -2,7 +2,7 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Logic.BracketGenerators.RoundRobin.CyclicGenerator
+namespace Logic.BracketGenerators.RoundRobin.Cyclic
 {
     public class CyclicSeedGenerator : ICyclicSeedGenerator
     {
