@@ -17,6 +17,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
         }
 
         /// <exception cref="InvalidParameterException"/>
+        /// <exception cref="SeedNotFoundException"/>
         public Bracket GenerateBracket(int roundCount, int participantCount)
         {
             ValidateRoundCount(roundCount);
