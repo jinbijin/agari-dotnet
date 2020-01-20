@@ -24,7 +24,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
             IEnumerable<(int, int)> seed = _cyclicSeedGenerator.GenerateSeed(roundCount / 4, participantCount / 4);
 
-            IEnumerable<BracketRound> rounds = seed.SelectMany((p, i) => FourRoundsFromSeed(p, participantCount / 4, 4 * i + 1));
+            IEnumerable<BracketRound> rounds = seed.SelectMany((p, i) => FourRoundsFromSeed(p, participantCount / 4, 4 * i));
             if (roundCount % 4 == 1)
             {
                 rounds = rounds.Prepend(ZeroRound(participantCount));
