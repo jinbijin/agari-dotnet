@@ -96,6 +96,20 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
         [Theory]
         [MemberData(nameof(SuccessData))]
+        public void GenerateBracketShouldHaveIncreasingParticipantsPerGame(int roundCount, int participantCount,
+            IEnumerable<(int, int)> mockedSeed)
+        {
+            _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
+                .Returns(mockedSeed);
+
+            Bracket result = _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+
+            result.Rounds.SelectMany(r => r.Games).Should()
+                .OnlyContain(g => g.ParticipantNrs.SequenceEqual(g.ParticipantNrs.OrderBy(x => x)));
+        }
+
+        [Theory]
+        [MemberData(nameof(SuccessData))]
         public void GenerateBracketShouldHaveAllParticipantsPerRound(int roundCount, int participantCount,
             IEnumerable<(int, int)> mockedSeed)
         {
