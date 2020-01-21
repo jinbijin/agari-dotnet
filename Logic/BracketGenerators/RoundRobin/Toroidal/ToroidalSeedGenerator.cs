@@ -2,11 +2,11 @@
 using System.Collections.Immutable;
 using System.Linq;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.BracketGenerators.RoundRobin.Toroidal
 {
-    public class CyclicSeedGenerator : ICyclicSeedGenerator
+    public class ToroidalSeedGenerator : IToroidalSeedGenerator
     {
-        private const string NotFoundMessage = "Could not find valid seed for the cyclic bracket generator.";
+        private const string NotFoundMessage = "Could not find valid seed for the toroidal bracket generator.";
 
         /// <exception cref="SeedNotFoundException"/>
         public IEnumerable<(int, int)> GenerateSeed(int count, int modulus)

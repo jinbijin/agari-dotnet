@@ -2,18 +2,18 @@
 using System.Linq;
 using Logic.Types.Bracket;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.BracketGenerators.RoundRobin.Toroidal
 {
-    public class CyclicGenerator : ICyclicGenerator
+    public class ToroidalGenerator : IToroidalGenerator
     {
-        private readonly ICyclicSeedGenerator _cyclicSeedGenerator;
+        private readonly IToroidalSeedGenerator _toroidalSeedGenerator;
 
         private const string NotSupportedRoundCountMessage = "Number of rounds must be one of 4, 5, 8, 9, 12, or 13.";
         private const string NotSupportedParticipantCountMessage = "Number of participants should be a multiple of 4.";
 
-        public CyclicGenerator(ICyclicSeedGenerator cyclicSeedGenerator)
+        public ToroidalGenerator(IToroidalSeedGenerator toroidalSeedGenerator)
         {
-            _cyclicSeedGenerator = cyclicSeedGenerator;
+            _toroidalSeedGenerator = toroidalSeedGenerator;
         }
 
         /// <exception cref="InvalidParameterException"/>
@@ -23,7 +23,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
             ValidateRoundCount(roundCount);
             ValidateParticipantCount(participantCount);
 
-            IEnumerable<(int, int)> seed = _cyclicSeedGenerator.GenerateSeed(roundCount / 4, participantCount / 4);
+            IEnumerable<(int, int)> seed = _toroidalSeedGenerator.GenerateSeed(roundCount / 4, participantCount / 4);
 
             IEnumerable<BracketRound> rounds = seed.SelectMany((p, i) => FourRoundsFromSeed(p, participantCount / 4, 4 * i));
             if (roundCount % 4 == 1)

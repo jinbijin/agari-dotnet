@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.BracketGenerators.RoundRobin.Toroidal
 {
-    public interface ICyclicSeedGenerator
+    public interface IToroidalSeedGenerator
     {
         /// <exception cref="SeedNotFoundException"/>
         IEnumerable<(int, int)> GenerateSeed(int count, int modulus);

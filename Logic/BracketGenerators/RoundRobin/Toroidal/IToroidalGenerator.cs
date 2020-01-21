@@ -1,8 +1,8 @@
 ﻿using Logic.Types.Bracket;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.BracketGenerators.RoundRobin.Toroidal
 {
-    public interface ICyclicGenerator
+    public interface IToroidalGenerator
     {
         /// <exception cref="InvalidParameterException"/>
         /// <exception cref="SeedNotFoundException"/>

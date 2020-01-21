@@ -1,16 +1,16 @@
 ﻿using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Types;
-using Logic.BracketGenerators.RoundRobin.Cyclic;
+using Logic.BracketGenerators.RoundRobin.Toroidal;
 using Logic.Types.Bracket;
 
 namespace Schema.Query
 {
     public class GenerateBracketQuery : IQuery<Bracket>
     {
-        private readonly ICyclicGenerator _bracketGenerator;
+        private readonly IToroidalGenerator _bracketGenerator;
 
-        public GenerateBracketQuery(ICyclicGenerator bracketGenerator)
+        public GenerateBracketQuery(IToroidalGenerator bracketGenerator)
         {
             _bracketGenerator = bracketGenerator;
         }
