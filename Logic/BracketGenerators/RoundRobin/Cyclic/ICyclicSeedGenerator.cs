@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using Logic.Types.Exceptions;
 
 namespace Logic.BracketGenerators.RoundRobin.Cyclic
 {
     public interface ICyclicSeedGenerator
     {
-        IEnumerable<List<int>> GenerateSeed(int count, int modulus);
+        /// <exception cref="SeedNotFoundException"/>
+        Task<IEnumerable<List<int>>> GenerateSeed(int count, int modulus);
     }
 }

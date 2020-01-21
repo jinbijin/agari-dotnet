@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Logic.BracketGenerators.RoundRobin.Cyclic;
 using Logic.BracketGenerators.RoundRobin.Toroidal;
 
 namespace Logic
@@ -7,6 +8,7 @@ namespace Logic
     {
         protected override void Load(ContainerBuilder builder)
         {
+            builder.RegisterType<CyclicSeedGenerator>().As<ICyclicSeedGenerator>();
             builder.RegisterType<ToroidalSeedGenerator>().As<IToroidalSeedGenerator>();
             builder.RegisterType<ToroidalGenerator>().As<IToroidalGenerator>();
         }
