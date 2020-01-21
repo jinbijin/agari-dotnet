@@ -22,7 +22,6 @@
   <ItemGroup>
     <Folder Include="BracketGenerators\" />
     <Folder Include="BracketGenerators\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\Toroidal\" />
     <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
   </ItemGroup>
   <ItemGroup>
