@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using FluentAssertions;
 using Logic.BracketGenerators.RoundRobin.Toroidal;
+using Logic.Types.Exceptions;
 using Xunit;
 
 namespace Logic.Tests.BracketGenerators.RoundRobin.Toroidal

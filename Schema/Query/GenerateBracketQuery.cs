@@ -3,6 +3,7 @@ using GraphQL;
 using GraphQL.Types;
 using Logic.BracketGenerators.RoundRobin.Toroidal;
 using Logic.Types.Bracket;
+using Logic.Types.Exceptions;
 
 namespace Schema.Query
 {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Logic.BracketGenerators.RoundRobin.Toroidal
+namespace Logic.Types.Exceptions
 {
     public class InvalidParameterException : Exception
     {

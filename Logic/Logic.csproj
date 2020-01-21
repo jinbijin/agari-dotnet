@@ -14,6 +14,8 @@
     <Folder Include="BracketGenerators\RoundRobin\Toroidal\" />
     <Folder Include="Types\" />
     <Folder Include="Types\Bracket\" />
+    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
+    <Folder Include="Types\Exceptions\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="4.9.4" />

@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-
+    <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -23,6 +23,7 @@
     <Folder Include="BracketGenerators\" />
     <Folder Include="BracketGenerators\RoundRobin\" />
     <Folder Include="BracketGenerators\RoundRobin\Toroidal\" />
+    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj" />

@@ -5,6 +5,7 @@ using FluentAssertions;
 using FluentAssertions.Execution;
 using Logic.BracketGenerators.RoundRobin.Toroidal;
 using Logic.Types.Bracket;
+using Logic.Types.Exceptions;
 using Moq;
 using Xunit;
 
