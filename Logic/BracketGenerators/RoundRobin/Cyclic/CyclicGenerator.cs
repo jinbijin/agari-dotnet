@@ -16,6 +16,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
         private const string NotSupportedRoundCountMessage = "Number of rounds must be at least 4.";
         private const string NotSupportedParticipantCountMessage = "Number of participants should be a multiple of 4.";
+        private const string NotEnoughParticipantsMessage = "There are not enough participants.";
 
         /// <exception cref="InvalidParameterException"/>
         /// <exception cref="SeedNotFoundException"/>
@@ -23,6 +24,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
         {
             ValidateRoundCount(roundCount);
             ValidateParticipantCount(participantCount);
+            ValidateRelativeParticipantCount(roundCount, participantCount);
 
             IEnumerable<List<int>> seed = await _cyclicSeedGenerator.GenerateSeed(roundCount, participantCount / 4);
 
@@ -66,6 +68,15 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
             if (participantCount % 4 != 0)
             {
                 throw new InvalidParameterException(NotSupportedParticipantCountMessage);
+            }
+        }
+
+        /// <exception cref="InvalidParameterException"/>
+        private void ValidateRelativeParticipantCount(int roundCount, int participantCount)
+        {
+            if (participantCount < 4 * (roundCount + ((roundCount + 1) % 2)))
+            {
+                throw new InvalidParameterException(NotEnoughParticipantsMessage);
             }
         }
     }

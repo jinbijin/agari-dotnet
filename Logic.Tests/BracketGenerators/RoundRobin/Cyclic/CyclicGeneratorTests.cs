@@ -38,15 +38,15 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
         public static IEnumerable<object[]> FailureData =>
             new List<object[]>
             {
-                new object[] { 4, 16 },
-                new object[] { 5, 16 }
+                new object[] { 4, 20 }
             };
 
         public static IEnumerable<object[]> InvalidData =>
             new List<object[]>
             {
                 new object[] { 3, 20, "Number of rounds must be at least 4." },
-                new object[] { 4, 21, "Number of participants should be a multiple of 4." }
+                new object[] { 4, 21, "Number of participants should be a multiple of 4." },
+                new object[] { 5, 16, "There are not enough participants." }
             };
 
         [Theory]

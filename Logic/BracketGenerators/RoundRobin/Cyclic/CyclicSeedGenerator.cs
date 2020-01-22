@@ -20,9 +20,11 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
             try
             {
                 cts.CancelAfter(2000);
-                return await Task.Run(() => GenerateSeed(count, modulus,
-                    Enumerable.Repeat(ImmutableSortedSet<int>.Empty, 4).ToList(),
-                    Enumerable.Repeat(ImmutableSortedSet<int>.Empty, 4).ToList(), cts.Token), cts.Token);
+                return await Task.Run(() => GenerateSeed(count - 1, modulus,
+                    Enumerable.Repeat(ImmutableSortedSet<int>.Empty.Add(0), 4).ToList(),
+                    Enumerable.Repeat(ImmutableSortedSet<int>.Empty.Add(0), 4).ToList(), cts.Token)
+                        .Prepend(new List<int> { 0, 0, 0, 0 }),
+                    cts.Token);
             }
             catch (OperationCanceledException)
             {
@@ -42,7 +44,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
             }
             cancellationToken.ThrowIfCancellationRequested();
 
-            foreach (List<int> tuple in LoopEnumerable(modulus, usedAdjacentDifferences))
+            foreach (List<int> tuple in LoopEnumerable(modulus, usedAdjacentDifferences, usedOppositeDifferences))
             {
                 List<int> oppositeDifferences = Enumerable.Range(0, 4)
                     .Select(i => (tuple[i] + tuple[(i + 1) % 4]) % modulus)
@@ -70,7 +72,8 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
             throw new SeedNotFoundException(NotFoundMessage);
         }
 
-        private IEnumerable<List<int>> LoopEnumerable(int modulus, List<ImmutableSortedSet<int>> usedAdjacentDifferences)
+        private IEnumerable<List<int>> LoopEnumerable(int modulus, List<ImmutableSortedSet<int>> usedAdjacentDifferences,
+            List<ImmutableSortedSet<int>> usedOppositeDifferences)
         {
             List<IEnumerable<int>> loopEnumerables = Enumerable.Range(0, 4)
                 .Select(i => Enumerable.Range(0, modulus)
@@ -79,12 +82,12 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
             foreach (int p in loopEnumerables[0])
             {
-                foreach (int q in loopEnumerables[1])
+                foreach (int q in loopEnumerables[1].Where(x => !usedOppositeDifferences[0].Contains((p + x) % modulus)))
                 {
-                    foreach (int r in loopEnumerables[2])
+                    foreach (int r in loopEnumerables[2].Where(x => !usedOppositeDifferences[1].Contains((q + x) % modulus)))
                     {
-                        foreach (int s in loopEnumerables[3]
-                            .Where(x => (p + q + r + x) % modulus == 0))
+                        int s = (3 * modulus - p - q - r) % modulus;
+                        if (loopEnumerables[3].Contains(s))
                         {
                             yield return new List<int> { p, q, r, s };
                         }
