@@ -1,0 +1,7 @@
+language: csharp
+solution: AgariDotNet.sln
+dotnet: 3.1.101
+os: linux
+script:
+  - dotnet restore
+  - dotnet test
