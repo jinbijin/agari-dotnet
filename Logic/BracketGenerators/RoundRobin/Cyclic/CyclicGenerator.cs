@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Logic.Types.Bracket;
+using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 
 namespace Logic.BracketGenerators.RoundRobin.Cyclic
@@ -20,7 +20,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
         /// <exception cref="InvalidParameterException"/>
         /// <exception cref="SeedNotFoundException"/>
-        public async Task<Bracket> GenerateBracket(int roundCount, int participantCount)
+        public async Task<RoundRobinBracket> GenerateBracket(int roundCount, int participantCount)
         {
             ValidateRoundCount(roundCount);
             ValidateParticipantCount(participantCount);
@@ -28,18 +28,18 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
             IEnumerable<List<int>> seed = await _cyclicSeedGenerator.GenerateSeed(roundCount, participantCount / 4);
 
-            IEnumerable<BracketRound> rounds = seed.Select((p, i) => RoundFromSeed(p, participantCount / 4, i));
+            IEnumerable<RoundRobinRound> rounds = seed.Select((p, i) => RoundFromSeed(p, participantCount / 4, i));
 
-            return new Bracket
+            return new RoundRobinBracket
             {
                 Rounds = rounds.ToList()
             };
         }
 
-        private static BracketRound RoundFromSeed(List<int> seed, int modulus, int shift) =>
-            new BracketRound
+        private static RoundRobinRound RoundFromSeed(List<int> seed, int modulus, int shift) =>
+            new RoundRobinRound
             {
-                Games = Enumerable.Range(1, modulus).Select(j => new BracketGame
+                Games = Enumerable.Range(1, modulus).Select(j => new RoundRobinGame
                 {
                     ParticipantNrs = Enumerable.Range(0, 4)
                         .Select(x => Enumerable.Range(0, x).Sum(y => seed[y % 4]))

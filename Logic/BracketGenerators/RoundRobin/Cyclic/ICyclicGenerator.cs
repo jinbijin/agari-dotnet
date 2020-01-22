@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using Logic.Types.Bracket;
+using Logic.Types.RoundRobin;
 
 namespace Logic.BracketGenerators.RoundRobin.Cyclic
 {
@@ -7,6 +7,6 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
     {
         /// <exception cref="InvalidParameterException"/>
         /// <exception cref="SeedNotFoundException"/>
-        Task<Bracket> GenerateBracket(int roundCount, int participantCount);
+        Task<RoundRobinBracket> GenerateBracket(int roundCount, int participantCount);
     }
 }

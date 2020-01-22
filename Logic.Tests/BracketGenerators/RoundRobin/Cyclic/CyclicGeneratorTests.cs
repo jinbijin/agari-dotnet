@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
 using Logic.BracketGenerators.RoundRobin.Cyclic;
-using Logic.Types.Bracket;
+using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 using Moq;
 using Xunit;
@@ -57,7 +57,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             _cyclicSeedGeneratorMock.Verify(generator => generator.GenerateSeed(roundCount, participantCount / 4), Times.Once);
         }
@@ -70,7 +70,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             result.Rounds.Should().HaveCount(roundCount);
         }
@@ -83,7 +83,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             result.Rounds.Should().OnlyContain(r => r.Games.Count() == participantCount / 4);
         }
@@ -96,7 +96,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games).Should().OnlyContain(g => g.ParticipantNrs.Count() == 4);
         }
@@ -109,7 +109,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games).Should()
                 .OnlyContain(g => g.ParticipantNrs.SequenceEqual(g.ParticipantNrs.OrderBy(x => x)));
@@ -123,7 +123,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             using AssertionScope assertionScope = new AssertionScope();
             foreach (var round in result.Rounds)
@@ -142,7 +142,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            Bracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games.SelectMany(g => Pairs(g.ParticipantNrs))).Should()
                 .OnlyHaveUniqueItems();
@@ -155,7 +155,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ThrowsAsync(new SeedNotFoundException());
 
-            Func<Task<Bracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            Func<Task<RoundRobinBracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             await func.Should().ThrowExactlyAsync<SeedNotFoundException>();
         }
@@ -164,7 +164,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
         [MemberData(nameof(InvalidData))]
         public async Task GenerateBracketShouldThrowInvalidParameterException(int roundCount, int participantCount, string expectedMessage)
         {
-            Func<Task<Bracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            Func<Task<RoundRobinBracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
 
             await func.Should().ThrowExactlyAsync<InvalidParameterException>().WithMessage(expectedMessage);
         }

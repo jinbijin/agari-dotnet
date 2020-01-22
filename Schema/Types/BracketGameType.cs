@@ -1,9 +1,9 @@
 ﻿using GraphQL.Types;
-using Logic.Types.Bracket;
+using Logic.Types.RoundRobin;
 
 namespace Schema.Types
 {
-    public class BracketGameType : ObjectGraphType<BracketGame>
+    public class BracketGameType : ObjectGraphType<RoundRobinGame>
     {
         public BracketGameType()
         {

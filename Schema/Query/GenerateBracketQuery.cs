@@ -2,12 +2,12 @@
 using GraphQL;
 using GraphQL.Types;
 using Logic.BracketGenerators.RoundRobin.Cyclic;
-using Logic.Types.Bracket;
+using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 
 namespace Schema.Query
 {
-    public class GenerateBracketQuery : IQuery<Bracket>
+    public class GenerateBracketQuery : IQuery<RoundRobinBracket>
     {
         private readonly ICyclicGenerator _bracketGenerator;
 
@@ -16,7 +16,7 @@ namespace Schema.Query
             _bracketGenerator = bracketGenerator;
         }
 
-        public async Task<Bracket> ExecuteAsync(ResolveFieldContext<object> context)
+        public async Task<RoundRobinBracket> ExecuteAsync(ResolveFieldContext<object> context)
         {
             int roundCount = context.GetArgument<int>("roundCount");
             int participantCount = context.GetArgument<int>("participantCount");
