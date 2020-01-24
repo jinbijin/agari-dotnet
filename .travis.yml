@@ -10,7 +10,7 @@ script:
 - dotnet test
 deploy:
 - provider: script
-  skip_cleanup: true
+  cleanup: false
   script: bash deploy/deploy.sh
   on:
     branch: master
