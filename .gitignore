@@ -407,3 +407,6 @@ ASALocalRun/
 # VS Code and Ionide
 .vscode/
 .ionide/
+
+# Deployment
+dist/
