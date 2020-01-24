@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Class1.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BracketGenerators\" />
+    <Folder Include="BracketGenerators\RoundRobin\" />
+    <Folder Include="Types\" />
+    <Folder Include="Types\RoundRobin\" />
+    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
+    <Folder Include="Types\Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.9.4" />
+  </ItemGroup>
+</Project>

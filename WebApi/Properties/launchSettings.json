@@ -3,11 +3,12 @@
   "profiles": {
     "WebApi": {
       "commandName": "Project",
+      "launchBrowser": true,
       "launchUrl": "graphql",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
-      "applicationUrl": "http://localhost:6000"
+      "applicationUrl": "http://localhost:5001"
     }
   }
 }

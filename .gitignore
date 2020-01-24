@@ -403,3 +403,10 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# VS Code and Ionide
+.vscode/
+.ionide/
+
+# Deployment
+dist/

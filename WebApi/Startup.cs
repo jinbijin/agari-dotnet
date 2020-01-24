@@ -1,13 +1,19 @@
+using System;
+using Autofac;
+using Logic;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Schema;
 
 namespace WebApi
 {
     public class Startup
     {
+        private readonly string _policy = "agariPolicy";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -15,13 +21,32 @@ namespace WebApi
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson().AddJsonOptions(config =>
+            {
+                config.JsonSerializerOptions.IgnoreNullValues = true;
+            });
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy(_policy, builder =>
+                {
+                    builder.WithOrigins("*")
+                        .WithMethods("POST", "OPTIONS")
+                        .WithHeaders("Content-Type", "Authentication")
+                        .SetPreflightMaxAge(new TimeSpan(TimeSpan.TicksPerDay));
+                });
+            });
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void ConfigureContainer(ContainerBuilder builder)
+        {
+            builder.RegisterModule<LogicModule>();
+            builder.RegisterModule<SchemaModule>();
+            builder.RegisterModule<WebApiModule>();
+        }
+
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -32,6 +57,8 @@ namespace WebApi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(_policy);
 
             app.UseAuthorization();
 
