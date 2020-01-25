@@ -4,7 +4,7 @@ dotnet: 3.1.101
 os: linux
 addons:
   ssh_known_hosts:
-    secure: I82H6xuG4DO1qTXjyRSbp49sintsAuWczPa7nonO6muF4KULvcABAyZJZmA035Wcdz9boCFo9k7kAsA+D6WSa3NwEv/9w0uQ5jBm8Zk84vx4yZka18rlRppqZu2apIPFczHhLQgZ44x0uDvavUrJsmD9AmUVMAkSSRi5igfEiPGY8cO6KU5qUQw5z2/w3BgiOuVzpnX9OmxjGPDyVxcJs7J1mgekUH0s5XT9jQ+8W3OMCchp/JWsDCJTaoRaA9loQUOMfr+P3iKf6Az8iVpTo2Hf/jQU+o/rmvtC4V1FNeOejQp/v/8Gztw797dXBPH7cg3M6ZXzvpPjiMV2iYysh+11IMUd6wj0OGTTSVZepqRLGatDSc3BwQofX7yd8EkMYL8FLsMSHbAntHUCa7rS75hTPMlGWF7ht9nBodBPTy2Qb9AxxQjJWoLMq/VcA44YBxNd1ffYW0SdyGtHGj/01eU/Gd5PevNiiKAIxEsC7GvZwWk0A0GHdktJTx89sznDWA6eCthk8tvZCI+d2QC17vNZ00QGj0zpay/AqI+0OC9m4eWgc4bZmkV8xdjYnWoKZvo+MqFt4mYF1tkz3cFEYs7GboghBE3OKwtX+gk5L5C6/+ALQTLwUiDjodpYZrOxnvdLOa3N0xD93qwSGt0G6BVufsZBUM8exD+amOk9E8M=
+    secure: retzwEPpCmrGDBkq39ciQXrLzulf1v8XRW/kLXu5JnlqhKSVTx5kA/KEVfEHhRBdXS/ABIUsM9afTVy63oMJvKNWQ8KTwyUm+TrCVmyya4IKlCb3/dUtCvmW8AlH6y72/425w3hOgAPjzw0rO3vG3hT+MKjBSu1pOnx1kaUXqgstZCkrETTttkZ7qxgKi2Qj+4Osl7siRv1QYa+NHtgJaj43KyTahc29lJ1V2Tt5W/0pSMcLREQ9xoS6DljaDRF94BED3XwCewXVL2edXa5vxrBa19of0+P3BzG8HGEj7GrGYi3l27ibSeqTX60WthrGgFrQ+gV13rJTGVN6bXAFK2mX2Cek2MTcKiGt44NMMt0AJCc31pWLjF59fgNMnIxTBXUnmIT4h9nKuD2bQBsfhEOKPEgR+8ZC7YzTehwPlbNwbyIXkRfaB/7gOFgQOQLa8FKU6MdsqRzcUiI8wGGfUnugviJcTypJUcU6rnidRNOF3YeyVJr74M0avKYg+MkCzVynxd+LslLPpJ9deoNTTHEqsW600djjfL0yBlCVKV3bhzgZfsszI/cY5MkN9O7vbfR/Snw1sgSqKTyG/tj4IoG10TqZl0cuCAgTHNXamD8VhXBuMlyBO9xGO+difx/2BCYQmYo1jtTV4hmChX4BzRAYgYTFEl+21ybov3SZCp4=
 script:
 - dotnet restore
 - dotnet test
@@ -13,7 +13,7 @@ deploy:
   cleanup: false
   script: bash deploy/deploy.sh
   on:
-    branch: master
+    branch: feature/deploy
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_6759c9d09779_key -iv $encrypted_6759c9d09779_iv
   -in deploy/deploy_rsa.enc -out /tmp/deploy_rsa -d
