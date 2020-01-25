@@ -16,7 +16,7 @@ namespace WebApi
                 .UseServiceProviderFactory(new AutofacServiceProviderFactory())
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
-                    webBuilder.UseUrls("http://*:5001")
+                    webBuilder.UseUrls("http://localhost:5001")
                         .UseStartup<Startup>();
                 });
     }
