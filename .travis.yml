@@ -13,7 +13,7 @@ deploy:
   cleanup: false
   script: bash deploy/deploy.sh
   on:
-    branch: feature/deploy
+    branch: master
 before_deploy:
 - openssl aes-256-cbc -K $encrypted_6759c9d09779_key -iv $encrypted_6759c9d09779_iv
   -in deploy/deploy_rsa.enc -out /tmp/deploy_rsa -d
