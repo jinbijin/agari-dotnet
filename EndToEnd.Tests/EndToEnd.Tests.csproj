@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Nullable>enable</Nullable>
+
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,21 +15,6 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="5.10.0" />
-    <PackageReference Include="Moq" Version="4.13.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BracketGenerators\" />
-    <Folder Include="BracketGenerators\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Logic\Logic.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="EndToEnd.Tests\obj\Debug\netcoreapp3.1\EndToEnd.Tests.csprojAssemblyReference.cache" />
-    <None Remove="EndToEnd.Tests\obj\EndToEnd.Tests.csproj.nuget.dgspec.json" />
-    <None Remove="EndToEnd.Tests\obj\Debug\netcoreapp3.1\EndToEnd.Tests.assets.cache" />
-  </ItemGroup>
 </Project>
