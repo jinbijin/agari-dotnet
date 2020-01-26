@@ -25,9 +25,16 @@
 
   <ItemGroup>
     <Folder Include="Query\" />
-    <Folder Include="Query\__snapshots__\__mismatch__\" />
+    <Folder Include="Fixture\" />
+    <Folder Include="Instrumentation\" />
+    <Folder Include="Query\__snapshots__\" />
+    <Folder Include="Variables\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApi\WebApi.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Query\__snapshots__\GenerateBracketTests.GenerateBracketSuccessTest_header.snap" />
+    <None Remove="Query\__snapshots__\GenerateBracketTests.GenerateBracketSuccessTest_content.snap" />
   </ItemGroup>
 </Project>
