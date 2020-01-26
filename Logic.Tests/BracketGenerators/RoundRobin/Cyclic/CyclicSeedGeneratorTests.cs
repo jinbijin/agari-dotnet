@@ -24,10 +24,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             {
                 new object[] { 4, 5 },
                 new object[] { 5, 5 },
-                new object[] { 6, 7 },
-                new object[] { 7, 7 },
-                new object[] { 8, 10 },
-                new object[] { 9, 10 }
+                new object[] { 6, 7 }
             };
 
         public static IEnumerable<object[]> FailureData =>
@@ -35,10 +32,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             {
                 new object[] { 4, 4 },
                 new object[] { 5, 4 },
-                new object[] { 6, 6 },
-                new object[] { 7, 6 },
-                new object[] { 8, 9 },
-                new object[] { 9, 9 }
+                new object[] { 6, 6 }
             };
 
         [Theory]

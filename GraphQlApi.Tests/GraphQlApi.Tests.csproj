@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Nullable>enable</Nullable>
+
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -15,21 +15,26 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0"><IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 <PrivateAssets>all</PrivateAssets>
 </PackageReference>
-    <PackageReference Include="FluentAssertions" Version="5.10.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.TestHost" Version="3.1.1" />
+    <PackageReference Include="Snapshooter.Xunit" Version="0.5.2" />
     <PackageReference Include="Moq" Version="4.13.1" />
+    <PackageReference Include="Autofac" Version="4.9.4" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="5.0.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BracketGenerators\" />
-    <Folder Include="BracketGenerators\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
+    <Folder Include="Query\" />
+    <Folder Include="Fixture\" />
+    <Folder Include="Instrumentation\" />
+    <Folder Include="Query\__snapshots__\" />
+    <Folder Include="Variables\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Logic\Logic.csproj" />
+    <ProjectReference Include="..\WebApi\WebApi.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="EndToEnd.Tests\obj\Debug\netcoreapp3.1\EndToEnd.Tests.csprojAssemblyReference.cache" />
-    <None Remove="EndToEnd.Tests\obj\EndToEnd.Tests.csproj.nuget.dgspec.json" />
-    <None Remove="EndToEnd.Tests\obj\Debug\netcoreapp3.1\EndToEnd.Tests.assets.cache" />
+    <None Remove="Query\__snapshots__\GenerateBracketTests.GenerateBracketSuccessTest_header.snap" />
+    <None Remove="Query\__snapshots__\GenerateBracketTests.GenerateBracketSuccessTest_content.snap" />
   </ItemGroup>
 </Project>
