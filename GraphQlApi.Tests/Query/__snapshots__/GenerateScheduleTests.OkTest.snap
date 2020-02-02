@@ -12,7 +12,7 @@
         {
           "Key": "Content-Length",
           "Value": [
-            "713"
+            "714"
           ]
         }
       ]
@@ -44,7 +44,7 @@
   },
   "ResponseContent": {
     "data": {
-      "generateBracket": {
+      "generateSchedule": {
         "rounds": [
           {
             "games": [

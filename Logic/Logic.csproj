@@ -9,11 +9,11 @@
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="BracketGenerators\" />
-    <Folder Include="BracketGenerators\RoundRobin\" />
+    <Folder Include="ScheduleGenerators\" />
+    <Folder Include="ScheduleGenerators\RoundRobin\" />
     <Folder Include="Types\" />
     <Folder Include="Types\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
+    <Folder Include="ScheduleGenerators\RoundRobin\Cyclic\" />
     <Folder Include="Types\Exceptions\" />
   </ItemGroup>
   <ItemGroup>

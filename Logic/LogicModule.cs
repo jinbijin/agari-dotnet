@@ -1,5 +1,5 @@
 ﻿using Autofac;
-using Logic.BracketGenerators.RoundRobin.Cyclic;
+using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 
 namespace Logic
 {

@@ -20,9 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="BracketGenerators\" />
-    <Folder Include="BracketGenerators\RoundRobin\" />
-    <Folder Include="BracketGenerators\RoundRobin\Cyclic\" />
+    <Folder Include="ScheduleGenerators\" />
+    <Folder Include="ScheduleGenerators\RoundRobin\" />
+    <Folder Include="ScheduleGenerators\RoundRobin\Cyclic\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Logic\Logic.csproj" />

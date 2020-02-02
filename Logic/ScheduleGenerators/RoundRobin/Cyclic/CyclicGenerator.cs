@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
 {
     public class CyclicGenerator : ICyclicGenerator
     {
@@ -20,7 +20,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
         /// <exception cref="InvalidParameterException"/>
         /// <exception cref="SeedNotFoundException"/>
-        public async Task<RoundRobinBracket> GenerateBracket(int roundCount, int participantCount)
+        public async Task<RoundRobinSchedule> GenerateSchedule(int roundCount, int participantCount)
         {
             ValidateRoundCount(roundCount);
             ValidateParticipantCount(participantCount);
@@ -30,7 +30,7 @@ namespace Logic.BracketGenerators.RoundRobin.Cyclic
 
             IEnumerable<RoundRobinRound> rounds = seed.Select((p, i) => RoundFromSeed(p, participantCount / 4, i));
 
-            return new RoundRobinBracket
+            return new RoundRobinSchedule
             {
                 Rounds = rounds.ToList()
             };

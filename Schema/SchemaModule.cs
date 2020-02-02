@@ -9,11 +9,11 @@ namespace Schema
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<BracketGameType>().AsSelf();
-            builder.RegisterType<BracketRoundType>().AsSelf();
-            builder.RegisterType<BracketType>().AsSelf();
+            builder.RegisterType<ScheduleGameType>().AsSelf();
+            builder.RegisterType<ScheduleRoundType>().AsSelf();
+            builder.RegisterType<ScheduleType>().AsSelf();
 
-            builder.RegisterType<GenerateBracketQuery>().AsSelf();
+            builder.RegisterType<GenerateScheduleQuery>().AsSelf();
 
             builder.RegisterType<AgariQuery>().AsSelf();
 

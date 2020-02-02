@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Logic.BracketGenerators.RoundRobin.Cyclic;
+using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 using Moq;
 using Xunit;
 
-namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.Tests.ScheduleGenerators.RoundRobin.Cyclic
 {
     public class CyclicGeneratorTests
     {
@@ -51,65 +51,65 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldCallCyclicSeedGenerator(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldCallCyclicSeedGenerator(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             _cyclicSeedGeneratorMock.Verify(generator => generator.GenerateSeed(roundCount, participantCount / 4), Times.Once);
         }
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveRoundCountRounds(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveRoundCountRounds(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             result.Rounds.Should().HaveCount(roundCount);
         }
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveParticipantCountGamesPerRound(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveParticipantCountGamesPerRound(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             result.Rounds.Should().OnlyContain(r => r.Games.Count() == participantCount / 4);
         }
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveFourParticipantsPerGame(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveFourParticipantsPerGame(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games).Should().OnlyContain(g => g.ParticipantNrs.Count() == 4);
         }
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveIncreasingParticipantsPerGame(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveIncreasingParticipantsPerGame(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games).Should()
                 .OnlyContain(g => g.ParticipantNrs.SequenceEqual(g.ParticipantNrs.OrderBy(x => x)));
@@ -117,13 +117,13 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveAllParticipantsPerRound(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveAllParticipantsPerRound(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             using AssertionScope assertionScope = new AssertionScope();
             foreach (var round in result.Rounds)
@@ -136,13 +136,13 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
         [Theory]
         [MemberData(nameof(SuccessData))]
-        public async Task GenerateBracketShouldHaveUniquePairs(int roundCount, int participantCount,
+        public async Task GenerateScheduleShouldHaveUniquePairs(int roundCount, int participantCount,
             IEnumerable<List<int>> mockedSeed)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ReturnsAsync(mockedSeed);
 
-            RoundRobinBracket result = await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            RoundRobinSchedule result = await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             result.Rounds.SelectMany(r => r.Games.SelectMany(g => Pairs(g.ParticipantNrs))).Should()
                 .OnlyHaveUniqueItems();
@@ -150,21 +150,21 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
 
         [Theory]
         [MemberData(nameof(FailureData))]
-        public async Task GenerateBracketShouldThrowSeedNotFoundException(int roundCount, int participantCount)
+        public async Task GenerateScheduleShouldThrowSeedNotFoundException(int roundCount, int participantCount)
         {
             _cyclicSeedGeneratorMock.Setup(generator => generator.GenerateSeed(It.IsAny<int>(), It.IsAny<int>()))
                 .ThrowsAsync(new SeedNotFoundException());
 
-            Func<Task<RoundRobinBracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            Func<Task<RoundRobinSchedule>> func = async () => await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             await func.Should().ThrowExactlyAsync<SeedNotFoundException>();
         }
 
         [Theory]
         [MemberData(nameof(InvalidData))]
-        public async Task GenerateBracketShouldThrowInvalidParameterException(int roundCount, int participantCount, string expectedMessage)
+        public async Task GenerateScheduleShouldThrowInvalidParameterException(int roundCount, int participantCount, string expectedMessage)
         {
-            Func<Task<RoundRobinBracket>> func = async () => await _cyclicGenerator.GenerateBracket(roundCount, participantCount);
+            Func<Task<RoundRobinSchedule>> func = async () => await _cyclicGenerator.GenerateSchedule(roundCount, participantCount);
 
             await func.Should().ThrowExactlyAsync<InvalidParameterException>().WithMessage(expectedMessage);
         }
