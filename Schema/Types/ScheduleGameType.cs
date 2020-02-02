@@ -3,12 +3,12 @@ using Logic.Types.RoundRobin;
 
 namespace Schema.Types
 {
-    public class BracketGameType : ObjectGraphType<RoundRobinGame>
+    public class ScheduleGameType : ObjectGraphType<RoundRobinGame>
     {
-        public BracketGameType()
+        public ScheduleGameType()
         {
-            Name = "BracketGame";
-            Description = "A game in a mahjong bracket";
+            Name = "ScheduleGame";
+            Description = "A game in a mahjong schedule";
             Field<NonNullGraphType<ListGraphType<NonNullGraphType<IntGraphType>>>>("participantNrs", "The numbers of the participants in the game");
         }
     }

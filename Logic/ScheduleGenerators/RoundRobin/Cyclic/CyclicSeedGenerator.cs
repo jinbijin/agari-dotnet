@@ -6,11 +6,11 @@ using System.Threading;
 using System.Threading.Tasks;
 using Logic.Types.Exceptions;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
 {
     public class CyclicSeedGenerator : ICyclicSeedGenerator
     {
-        private const string NotFoundMessage = "Could not find valid seed for the cyclic bracket generator.";
+        private const string NotFoundMessage = "Could not find valid seed for the cyclic schedule generator.";
 
         /// <exception cref="SeedNotFoundException"/>
         public async Task<IEnumerable<List<int>>> GenerateSeed(int count, int modulus)

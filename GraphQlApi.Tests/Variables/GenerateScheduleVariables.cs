@@ -2,7 +2,7 @@
 
 namespace GraphQlApi.Tests.Variables
 {
-    public class GenerateBracketVariables
+    public class GenerateScheduleVariables
     {
         [SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "JSON property")]
         public int roundCount { get; set; }

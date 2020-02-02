@@ -12,7 +12,7 @@
         {
           "Key": "Content-Length",
           "Value": [
-            "199"
+            "203"
           ]
         }
       ]
@@ -44,19 +44,19 @@
   },
   "ResponseContent": {
     "data": {
-      "generateBracket": null
+      "generateSchedule": null
     },
     "errors": [
       {
-        "message": "There are not enough participants.",
+        "message": "Number of rounds must be at least 4.",
         "locations": [
           {
             "line": 1,
-            "column": 69
+            "column": 70
           }
         ],
         "path": [
-          "generateBracket"
+          "generateSchedule"
         ],
         "extensions": {
           "code": "INVALID_PARAMETER"

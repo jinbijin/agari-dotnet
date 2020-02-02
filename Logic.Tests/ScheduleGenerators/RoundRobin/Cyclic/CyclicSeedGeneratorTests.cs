@@ -4,11 +4,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
-using Logic.BracketGenerators.RoundRobin.Cyclic;
+using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 using Logic.Types.Exceptions;
 using Xunit;
 
-namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.Tests.ScheduleGenerators.RoundRobin.Cyclic
 {
     public class CyclicSeedGeneratorTests
     {
@@ -113,7 +113,7 @@ namespace Logic.Tests.BracketGenerators.RoundRobin.Cyclic
             Func<Task<IEnumerable<List<int>>>> func = async () => await _cyclicSeedGenerator.GenerateSeed(count, modulus);
 
             await func.Should().ThrowExactlyAsync<SeedNotFoundException>()
-                .WithMessage("Could not find valid seed for the cyclic bracket generator.");
+                .WithMessage("Could not find valid seed for the cyclic schedule generator.");
         }
     }
 }

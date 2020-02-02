@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using Logic.Types.Exceptions;
 
-namespace Logic.BracketGenerators.RoundRobin.Cyclic
+namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
 {
     public interface ICyclicSeedGenerator
     {

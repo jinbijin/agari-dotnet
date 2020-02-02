@@ -7,15 +7,15 @@ namespace Schema
     public class AgariQuery : ObjectGraphType
     {
         public AgariQuery(
-            GenerateBracketQuery generateBracketQuery)
+            GenerateScheduleQuery generateScheduleQuery)
         {
             Name = "Query";
-            FieldAsync<NonNullGraphType<BracketType>>("generateBracket",
+            FieldAsync<NonNullGraphType<ScheduleType>>("generateSchedule",
                 arguments: new QueryArguments(
                     new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "roundCount" },
                     new QueryArgument<NonNullGraphType<IntGraphType>> { Name = "participantCount" }
                 ),
-                resolve: async ctx => await generateBracketQuery.ExecuteAsync(ctx));
+                resolve: async ctx => await generateScheduleQuery.ExecuteAsync(ctx));
         }
     }
 }

@@ -1,29 +1,29 @@
 ﻿using System.Threading.Tasks;
 using GraphQL;
 using GraphQL.Types;
-using Logic.BracketGenerators.RoundRobin.Cyclic;
+using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
 
 namespace Schema.Query
 {
-    public class GenerateBracketQuery : IQuery<RoundRobinBracket>
+    public class GenerateScheduleQuery : IQuery<RoundRobinSchedule>
     {
-        private readonly ICyclicGenerator _bracketGenerator;
+        private readonly ICyclicGenerator _scheduleGenerator;
 
-        public GenerateBracketQuery(ICyclicGenerator bracketGenerator)
+        public GenerateScheduleQuery(ICyclicGenerator scheduleGenerator)
         {
-            _bracketGenerator = bracketGenerator;
+            _scheduleGenerator = scheduleGenerator;
         }
 
-        public async Task<RoundRobinBracket> ExecuteAsync(ResolveFieldContext<object> context)
+        public async Task<RoundRobinSchedule> ExecuteAsync(ResolveFieldContext<object> context)
         {
             int roundCount = context.GetArgument<int>("roundCount");
             int participantCount = context.GetArgument<int>("participantCount");
 
             try
             {
-                return await _bracketGenerator.GenerateBracket(roundCount, participantCount);
+                return await _scheduleGenerator.GenerateSchedule(roundCount, participantCount);
             }
             catch (SeedNotFoundException ex)
             {
