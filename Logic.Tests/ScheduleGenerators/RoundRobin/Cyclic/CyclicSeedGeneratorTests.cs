@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using FluentAssertions;
 using FluentAssertions.Execution;
+using Logic.Randomizer;
 using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 using Logic.Types.Exceptions;
+using Moq;
 using Xunit;
 
 namespace Logic.Tests.ScheduleGenerators.RoundRobin.Cyclic
@@ -14,9 +16,14 @@ namespace Logic.Tests.ScheduleGenerators.RoundRobin.Cyclic
     {
         public CyclicSeedGeneratorTests()
         {
-            _cyclicSeedGenerator = new CyclicSeedGenerator();
+            _orderRandomizerMock = new Mock<IOrderRandomizer>();
+            _cyclicSeedGenerator = new CyclicSeedGenerator(_orderRandomizerMock.Object);
+
+            _orderRandomizerMock.Setup(randomizer => randomizer.RandomizeOrder(It.IsAny<IEnumerable<int>>()))
+                .Returns<IEnumerable<int>>(ts => ts);
         }
 
+        private readonly Mock<IOrderRandomizer> _orderRandomizerMock;
         private readonly ICyclicSeedGenerator _cyclicSeedGenerator;
 
         public static IEnumerable<object[]> SuccessData =>

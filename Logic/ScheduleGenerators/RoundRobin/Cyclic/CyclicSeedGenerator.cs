@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Logic.Randomizer;
 using Logic.Types.Exceptions;
 
 namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
@@ -11,6 +12,13 @@ namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
     public class CyclicSeedGenerator : ICyclicSeedGenerator
     {
         private const string NotFoundMessage = "Could not find valid seed for the cyclic schedule generator.";
+
+        private readonly IOrderRandomizer _orderRandomizer;
+
+        public CyclicSeedGenerator(IOrderRandomizer orderRandomizer)
+        {
+            _orderRandomizer = orderRandomizer;
+        }
 
         /// <exception cref="SeedNotFoundException"/>
         public async Task<IEnumerable<List<int>>> GenerateSeed(int count, int modulus)
@@ -76,7 +84,7 @@ namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
             List<ImmutableSortedSet<int>> usedOppositeDifferences)
         {
             List<IEnumerable<int>> loopEnumerables = Enumerable.Range(0, 4)
-                .Select(i => Enumerable.Range(0, modulus)
+                .Select(i => _orderRandomizer.RandomizeOrder(Enumerable.Range(0, modulus))
                     .Where(x => !usedAdjacentDifferences[i].Contains(x)))
                 .ToList();
 
