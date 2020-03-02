@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using Logic.Randomizer;
 using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 
 namespace Logic
@@ -9,6 +10,7 @@ namespace Logic
         {
             builder.RegisterType<CyclicSeedGenerator>().As<ICyclicSeedGenerator>();
             builder.RegisterType<CyclicGenerator>().As<ICyclicGenerator>();
+            builder.RegisterType<OrderRandomizer>().As<IOrderRandomizer>();
         }
     }
 }
