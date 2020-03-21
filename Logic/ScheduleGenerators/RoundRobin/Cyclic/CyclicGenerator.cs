@@ -44,7 +44,7 @@ namespace Logic.ScheduleGenerators.RoundRobin.Cyclic
                     ParticipantNrs = Enumerable.Range(0, 4)
                         .Select(x => Enumerable.Range(0, x).Sum(y => seed[y % 4]))
                         .Select(x => (x + j + shift - 1) % modulus)
-                        .Zip(Enumerable.Range(1, 4))
+                        .Zip(Enumerable.Range(0, 4))
                         .Select(CoordinatesToNumber)
                         .OrderBy(x => x)
                         .ToList()

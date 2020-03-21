@@ -130,7 +130,7 @@ namespace Logic.Tests.ScheduleGenerators.RoundRobin.Cyclic
             {
                 round.Games.SelectMany(g => g.ParticipantNrs).Should()
                     .OnlyHaveUniqueItems()
-                    .And.BeEquivalentTo(Enumerable.Range(1, participantCount));
+                    .And.BeEquivalentTo(Enumerable.Range(0, participantCount));
             }
         }
 
