@@ -31,6 +31,12 @@
             "Value": [
               "application/json; charset=utf-8"
             ]
+          },
+          {
+            "Key": "Content-Length",
+            "Value": [
+              "252"
+            ]
           }
         ]
       },
@@ -96,48 +102,12 @@
             "games": [
               {
                 "participantNrs": [
-                  4,
-                  11,
-                  13,
-                  18
-                ]
-              },
-              {
-                "participantNrs": [
                   2,
-                  8,
-                  15,
-                  17
-                ]
-              },
-              {
-                "participantNrs": [
-                  1,
-                  6,
-                  12,
+                  4,
+                  9,
                   19
                 ]
               },
-              {
-                "participantNrs": [
-                  3,
-                  5,
-                  10,
-                  16
-                ]
-              },
-              {
-                "participantNrs": [
-                  0,
-                  7,
-                  9,
-                  14
-                ]
-              }
-            ]
-          },
-          {
-            "games": [
               {
                 "participantNrs": [
                   3,
@@ -169,13 +139,49 @@
                   15,
                   18
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "games": [
               {
                 "participantNrs": [
                   2,
-                  4,
-                  9,
+                  8,
+                  15,
+                  17
+                ]
+              },
+              {
+                "participantNrs": [
+                  1,
+                  6,
+                  12,
                   19
+                ]
+              },
+              {
+                "participantNrs": [
+                  3,
+                  5,
+                  10,
+                  16
+                ]
+              },
+              {
+                "participantNrs": [
+                  0,
+                  7,
+                  9,
+                  14
+                ]
+              },
+              {
+                "participantNrs": [
+                  4,
+                  11,
+                  13,
+                  18
                 ]
               }
             ]
@@ -184,42 +190,42 @@
             "games": [
               {
                 "participantNrs": [
-                  3,
-                  9,
-                  12,
-                  18
+                  2,
+                  5,
+                  11,
+                  12
                 ]
               },
               {
                 "participantNrs": [
-                  2,
-                  7,
-                  13,
+                  6,
+                  9,
+                  15,
                   16
                 ]
               },
               {
                 "participantNrs": [
                   0,
-                  6,
-                  11,
+                  10,
+                  13,
+                  19
+                ]
+              },
+              {
+                "participantNrs": [
+                  3,
+                  4,
+                  14,
                   17
                 ]
               },
               {
                 "participantNrs": [
                   1,
-                  4,
-                  10,
-                  15
-                ]
-              },
-              {
-                "participantNrs": [
-                  5,
+                  7,
                   8,
-                  14,
-                  19
+                  18
                 ]
               }
             ]

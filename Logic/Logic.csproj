@@ -16,6 +16,6 @@
     <Folder Include="Randomizer\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
   </ItemGroup>
 </Project>
