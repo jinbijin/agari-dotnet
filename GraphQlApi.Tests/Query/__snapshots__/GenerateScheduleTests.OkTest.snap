@@ -23,6 +23,7 @@
     "TrailingHeaders": [],
     "RequestMessage": {
       "Version": "1.1",
+      "VersionPolicy": "RequestVersionOrLower",
       "Content": {
         "Headers": [
           {
@@ -38,7 +39,8 @@
       },
       "RequestUri": "http://localhost/graphql",
       "Headers": [],
-      "Properties": {}
+      "Properties": {},
+      "Options": {}
     },
     "IsSuccessStatusCode": true
   },
@@ -94,48 +96,12 @@
             "games": [
               {
                 "participantNrs": [
-                  3,
                   4,
-                  14,
-                  17
-                ]
-              },
-              {
-                "participantNrs": [
-                  1,
-                  7,
-                  8,
+                  11,
+                  13,
                   18
                 ]
               },
-              {
-                "participantNrs": [
-                  2,
-                  5,
-                  11,
-                  12
-                ]
-              },
-              {
-                "participantNrs": [
-                  6,
-                  9,
-                  15,
-                  16
-                ]
-              },
-              {
-                "participantNrs": [
-                  0,
-                  10,
-                  13,
-                  19
-                ]
-              }
-            ]
-          },
-          {
-            "games": [
               {
                 "participantNrs": [
                   2,
@@ -167,19 +133,19 @@
                   9,
                   14
                 ]
-              },
-              {
-                "participantNrs": [
-                  4,
-                  11,
-                  13,
-                  18
-                ]
               }
             ]
           },
           {
             "games": [
+              {
+                "participantNrs": [
+                  3,
+                  6,
+                  8,
+                  13
+                ]
+              },
               {
                 "participantNrs": [
                   7,
@@ -211,13 +177,49 @@
                   9,
                   19
                 ]
-              },
+              }
+            ]
+          },
+          {
+            "games": [
               {
                 "participantNrs": [
                   3,
+                  9,
+                  12,
+                  18
+                ]
+              },
+              {
+                "participantNrs": [
+                  2,
+                  7,
+                  13,
+                  16
+                ]
+              },
+              {
+                "participantNrs": [
+                  0,
                   6,
+                  11,
+                  17
+                ]
+              },
+              {
+                "participantNrs": [
+                  1,
+                  4,
+                  10,
+                  15
+                ]
+              },
+              {
+                "participantNrs": [
+                  5,
                   8,
-                  13
+                  14,
+                  19
                 ]
               }
             ]

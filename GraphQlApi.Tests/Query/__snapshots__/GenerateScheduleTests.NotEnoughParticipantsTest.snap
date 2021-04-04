@@ -23,6 +23,7 @@
     "TrailingHeaders": [],
     "RequestMessage": {
       "Version": "1.1",
+      "VersionPolicy": "RequestVersionOrLower",
       "Content": {
         "Headers": [
           {
@@ -38,7 +39,8 @@
       },
       "RequestUri": "http://localhost/graphql",
       "Headers": [],
-      "Properties": {}
+      "Properties": {},
+      "Options": {}
     },
     "IsSuccessStatusCode": true
   },
