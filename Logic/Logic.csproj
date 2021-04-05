@@ -1,9 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ReleaseVersion>2.0.0</ReleaseVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +16,6 @@
     <Folder Include="Randomizer\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Autofac" Version="5.1.2" />
+    <PackageReference Include="Autofac" Version="6.1.0" />
   </ItemGroup>
 </Project>

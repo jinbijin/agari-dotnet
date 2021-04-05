@@ -1,9 +1,9 @@
 ﻿using System.Threading.Tasks;
 using GraphQL;
-using GraphQL.Types;
 using Logic.ScheduleGenerators.RoundRobin.Cyclic;
 using Logic.Types.RoundRobin;
 using Logic.Types.Exceptions;
+using GraphQL.Types;
 
 namespace Schema.Query
 {
