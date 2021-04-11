@@ -22,6 +22,16 @@ namespace Logic.RoundRobin.Implementations
                 throw new ArgumentException("Invalid round count.");
             }
 
+            if (participantCount <= 0 || participantCount % 4 != 0)
+            {
+                throw new ArgumentException("Invalid participant count.");
+            }
+
+            if (3 * roundCount > participantCount - 1)
+            {
+                throw new ArgumentException("No schedule exists.");
+            }
+
             IScheduleGenerator? generator = generators
                 .Where(g => g.MaxRoundCount(participantCount) != null && roundCount <= g.MaxRoundCount(participantCount))
                 .OrderBy(g => g.Specificity)
