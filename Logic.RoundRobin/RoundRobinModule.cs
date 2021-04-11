@@ -9,6 +9,7 @@ namespace Logic.RoundRobin
         protected override void Load(ContainerBuilder builder)
         {
             builder.RegisterType<AffineF4Generator>().As<IScheduleGenerator>();
+            builder.RegisterType<WheelGenerator>().As<IScheduleGenerator>();
             builder.RegisterType<RoundRobinScheduleGenerator>().As<IRoundRobinScheduleGenerator>();
         }
     }
