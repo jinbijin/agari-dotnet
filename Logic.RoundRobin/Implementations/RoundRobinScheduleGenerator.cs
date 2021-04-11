@@ -17,6 +17,17 @@ namespace Logic.RoundRobin.Implementations
 
         public Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
+            IScheduleGenerator generator = ValidateParameters(participantCount, roundCount);
+            return generator.GenerateSchedule(participantCount, roundCount);
+        }
+
+        public async Task<bool> ValidateGenerateScheduleRequest(int participantCount, int roundCount)
+        {
+            return ValidateParameters(participantCount, roundCount) != null;
+        }
+
+        private IScheduleGenerator ValidateParameters(int participantCount, int roundCount)
+        {
             if (roundCount <= 0)
             {
                 throw new ArgumentException("Invalid round count.");
@@ -42,7 +53,7 @@ namespace Logic.RoundRobin.Implementations
                 throw new ArgumentException("No schedule can be found.");
             }
 
-            return generator.GenerateSchedule(participantCount, roundCount);
+            return generator;
         }
     }
 }
