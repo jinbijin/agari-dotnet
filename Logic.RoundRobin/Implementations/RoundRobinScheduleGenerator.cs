@@ -24,7 +24,8 @@ namespace Logic.RoundRobin.Implementations
 
             IScheduleGenerator? generator = generators
                 .Where(g => g.MaxRoundCount(participantCount) != null && roundCount <= g.MaxRoundCount(participantCount))
-                .OrderByDescending(g => g.MaxRoundCount(participantCount))
+                .OrderBy(g => g.Specificity)
+                .ThenByDescending(g => g.MaxRoundCount(participantCount))
                 .FirstOrDefault();
             if (generator == null)
             {

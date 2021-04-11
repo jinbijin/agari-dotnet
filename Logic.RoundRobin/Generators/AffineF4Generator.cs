@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -7,6 +6,8 @@ namespace Logic.RoundRobin.Generators
 {
     internal class AffineF4Generator : IScheduleGenerator
     {
+        public Specificity Specificity => Specificity.Special;
+
         public int? MaxRoundCount(int participantCount) => participantCount == 16 ? 5 : null;
 
         public async Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
