@@ -11,11 +11,6 @@ namespace Logic.RoundRobin.Generators
 
         public async Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
-            if (roundCount > 5 || roundCount < 1)
-            {
-                throw new ArgumentException("Invalid round count.");
-            }
-
             return new RoundRobinSchedule(await GenerateRounds().Take(roundCount).ToListAsync());
         }
 

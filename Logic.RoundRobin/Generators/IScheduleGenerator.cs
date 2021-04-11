@@ -11,7 +11,7 @@ namespace Logic.RoundRobin.Generators
         int? MaxRoundCount(int participantCount);
 
         /// <summary>
-        /// Generate a schedule
+        /// Generate a schedule. Parameters are already validated.
         /// </summary>
         Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount);
     }

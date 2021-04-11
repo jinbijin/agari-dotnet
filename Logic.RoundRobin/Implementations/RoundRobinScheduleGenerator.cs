@@ -17,8 +17,13 @@ namespace Logic.RoundRobin.Implementations
 
         public Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
+            if (roundCount <= 0)
+            {
+                throw new ArgumentException("Invalid round count.");
+            }
+
             IScheduleGenerator? generator = generators
-                .Where(g => g.MaxRoundCount(participantCount) != null)
+                .Where(g => g.MaxRoundCount(participantCount) != null && roundCount <= g.MaxRoundCount(participantCount))
                 .OrderByDescending(g => g.MaxRoundCount(participantCount))
                 .FirstOrDefault();
             if (generator == null)
