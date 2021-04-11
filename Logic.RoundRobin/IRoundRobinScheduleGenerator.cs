@@ -1,10 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using Logic.Common;
+using System.Threading.Tasks;
 
 namespace Logic.RoundRobin
 {
     public interface IRoundRobinScheduleGenerator
     {
-        Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount);
-        Task<bool> ValidateGenerateScheduleRequest(int participantCount, int roundCount);
+        Task<Response<RoundRobinSchedule, Error>> GenerateSchedule(int participantCount, int roundCount);
+        Task<Response<bool, Error>> ValidateGenerateScheduleRequest(int participantCount, int roundCount);
     }
 }

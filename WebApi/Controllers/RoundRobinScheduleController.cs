@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         [HttpOptions]
         public async Task<IActionResult> GenerateSchedule(GenerateScheduleRequest request)
         {
-            return Ok(new { Schedule = await generator.GenerateSchedule(request.ParticipantCount, request.RoundCount) });
+            return Ok(await generator.GenerateSchedule(request.ParticipantCount, request.RoundCount));
         }
     }
 }

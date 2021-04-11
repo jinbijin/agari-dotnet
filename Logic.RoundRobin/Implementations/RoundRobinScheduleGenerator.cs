@@ -1,4 +1,5 @@
-﻿using Logic.RoundRobin.Generators;
+﻿using Logic.Common;
+using Logic.RoundRobin.Generators;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,32 +16,33 @@ namespace Logic.RoundRobin.Implementations
             this.generators = generators;
         }
 
-        public Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
+        public Task<Response<RoundRobinSchedule, Error>> GenerateSchedule(int participantCount, int roundCount)
         {
-            IScheduleGenerator generator = ValidateParameters(participantCount, roundCount);
-            return generator.GenerateSchedule(participantCount, roundCount);
+            Response<IScheduleGenerator, Error> generatorResponse = ValidateParameters(participantCount, roundCount);
+            return generatorResponse.Map(async generator => await generator.GenerateSchedule(participantCount, roundCount));
         }
 
-        public async Task<bool> ValidateGenerateScheduleRequest(int participantCount, int roundCount)
+        public async Task<Response<bool, Error>> ValidateGenerateScheduleRequest(int participantCount, int roundCount)
         {
-            return ValidateParameters(participantCount, roundCount) != null;
+            Response<IScheduleGenerator, Error> generatorResponse = ValidateParameters(participantCount, roundCount);
+            return generatorResponse.Map(generator => true);
         }
 
-        private IScheduleGenerator ValidateParameters(int participantCount, int roundCount)
+        private Response<IScheduleGenerator, Error> ValidateParameters(int participantCount, int roundCount)
         {
             if (roundCount <= 0)
             {
-                throw new ArgumentException("Invalid round count.");
+                return Response<IScheduleGenerator, Error>.Failure(new RoundCountError());
             }
 
             if (participantCount <= 0 || participantCount % 4 != 0)
             {
-                throw new ArgumentException("Invalid participant count.");
+                return Response<IScheduleGenerator, Error>.Failure(new ParticipantCountError());
             }
 
             if (3 * roundCount > participantCount - 1)
             {
-                throw new ArgumentException("No schedule exists.");
+                return Response<IScheduleGenerator, Error>.Failure(new RoundRobinScheduleNotAvailableError());
             }
 
             IScheduleGenerator? generator = generators
@@ -48,12 +50,7 @@ namespace Logic.RoundRobin.Implementations
                 .OrderBy(g => g.Specificity)
                 .ThenByDescending(g => g.MaxRoundCount(participantCount))
                 .FirstOrDefault();
-            if (generator == null)
-            {
-                throw new ArgumentException("No schedule can be found.");
-            }
-
-            return generator;
+            return generator == null ? Response<IScheduleGenerator, Error>.Failure(new RoundRobinScheduleNotFoundError()) : Response<IScheduleGenerator, Error>.Success(generator);
         }
     }
 }
