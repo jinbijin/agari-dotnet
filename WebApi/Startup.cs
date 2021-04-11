@@ -1,6 +1,7 @@
 using System;
 using Autofac;
 using Logic;
+using Logic.RoundRobin;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -44,6 +45,7 @@ namespace WebApi
         {
             builder.RegisterModule<LogicModule>();
             builder.RegisterModule<SchemaModule>();
+            builder.RegisterModule<RoundRobinModule>();
             builder.RegisterModule<WebApiModule>();
         }
 

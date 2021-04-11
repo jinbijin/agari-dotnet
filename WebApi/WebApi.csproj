@@ -2,21 +2,16 @@
 
   <PropertyGroup>
   </PropertyGroup>
-
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Types\" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Autofac" Version="6.1.0" />
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="7.1.0" />
     <PackageReference Include="GraphQL" Version="2.4.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.5" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Logic.RoundRobin\Logic.RoundRobin.csproj" />
     <ProjectReference Include="..\Logic\Logic.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
