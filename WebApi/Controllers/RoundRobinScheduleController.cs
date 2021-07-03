@@ -24,5 +24,14 @@ namespace WebApi.Controllers
         {
             return Ok(await generator.GenerateSchedule(request.ParticipantCount, request.RoundCount));
         }
+
+        [EnableCors]
+        [HttpPost]
+        [HttpOptions]
+        [Route("validate")]
+        public async Task<IActionResult> ValidateGenerateScheduleRequest(GenerateScheduleRequest request)
+        {
+            return Ok(await generator.ValidateGenerateScheduleRequest(request.ParticipantCount, request.RoundCount));
+        }
     }
 }
