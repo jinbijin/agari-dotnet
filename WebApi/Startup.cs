@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Schema;
 
 namespace WebApi
 {
@@ -44,7 +43,6 @@ namespace WebApi
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<LogicModule>();
-            builder.RegisterModule<SchemaModule>();
             builder.RegisterModule<RoundRobinModule>();
             builder.RegisterModule<WebApiModule>();
         }

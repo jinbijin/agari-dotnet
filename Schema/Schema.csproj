@@ -7,8 +7,8 @@
     <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="GraphQL" Version="2.4.0" />
-    <PackageReference Include="Autofac" Version="6.1.0" />
+    <PackageReference Include="GraphQL" Version="4.5.0" />
+    <PackageReference Include="Autofac" Version="6.2.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Query\" />
