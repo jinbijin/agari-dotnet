@@ -1,5 +1,6 @@
 ﻿using Traversable;
 using System;
+using Math.Algorithm.Enumerable;
 
 namespace Math.Algorithm
 {
@@ -16,7 +17,7 @@ namespace Math.Algorithm
                 return new() { Base = 1, Power = 1 };
             }
 
-            for (int power = 2; toDecompose >> power >= 1; power++)
+            foreach (int power in Ranges.FromUntilLog(2, 2, toDecompose))
             {
                 var decomposition = BinarySearchable.Range(1, toDecompose).Find(number => TryComparePowerToNumber(number, power, toDecompose));
                 if (decomposition.Power != default || decomposition.Base != default)
