@@ -1,6 +1,6 @@
 ﻿using Traversable;
 using System;
-using Math.Algorithm.Enumerable;
+using Math.Algorithm.Enumerables;
 
 namespace Math.Algorithm
 {
