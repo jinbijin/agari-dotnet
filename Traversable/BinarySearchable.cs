@@ -4,6 +4,18 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Traversable
 {
+    public interface IBinarySearchable<T>
+    {
+        IBinarySearcher<T> GetBinarySearcher();
+    }
+
+    public interface IBinarySearcher<T>
+    {
+        T Current { get; }
+        bool MoveBefore();
+        bool MoveAfter();
+    }
+
     public static class BinarySearchable
     {
         public static IBinarySearchable<int> Range(int start, int count) => new RangeBinarySearchable(start, count);
