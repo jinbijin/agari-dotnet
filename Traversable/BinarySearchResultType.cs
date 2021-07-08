@@ -1,9 +1,9 @@
-﻿namespace BinarySearchable
+﻿namespace Traversable
 {
     public enum BinarySearchResultType
     {
         Found,
-        Before,
-        After
+        BeforeCurrent,
+        AfterCurrent
     }
 }

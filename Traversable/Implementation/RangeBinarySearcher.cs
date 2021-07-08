@@ -1,4 +1,4 @@
-﻿namespace BinarySearchable.Implementation
+﻿namespace Traversable.Implementation
 {
     internal class RangeBinarySearcher : IBinarySearcher<int>
     {

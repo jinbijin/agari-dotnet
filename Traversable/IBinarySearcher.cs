@@ -1,4 +1,4 @@
-﻿namespace BinarySearchable
+﻿namespace Traversable
 {
     public interface IBinarySearcher<T>
     {

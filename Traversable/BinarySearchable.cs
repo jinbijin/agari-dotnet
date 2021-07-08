@@ -1,8 +1,8 @@
-﻿using BinarySearchable.Implementation;
+﻿using Traversable.Implementation;
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace BinarySearchable
+namespace Traversable
 {
     public static class BinarySearchable
     {
@@ -21,11 +21,11 @@ namespace BinarySearchable
                 {
                     case BinarySearchResultType.Found:
                         return result.Data;
-                    case BinarySearchResultType.Before:
-                        shouldContinue = binarySearcher.MoveBefore();
-                        break;
-                    case BinarySearchResultType.After:
+                    case BinarySearchResultType.BeforeCurrent:
                         shouldContinue = binarySearcher.MoveAfter();
+                        break;
+                    case BinarySearchResultType.AfterCurrent:
+                        shouldContinue = binarySearcher.MoveBefore();
                         break;
                 }
             }
