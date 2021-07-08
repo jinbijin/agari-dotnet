@@ -25,7 +25,7 @@ namespace Math.Algorithm.Tests
 
         [Theory]
         [MemberData(nameof(Data))]
-        public void DecomposePrimePower(int toDecompose, int powerBase, int power)
+        public void DecomposePower(int toDecompose, int powerBase, int power)
         {
             PowerDecomposition result = Algorithm.Decompose(toDecompose);
 

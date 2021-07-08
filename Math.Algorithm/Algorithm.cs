@@ -16,8 +16,7 @@ namespace Math.Algorithm
                 return new() { Base = 1, Power = 1 };
             }
 
-            var power = 2;
-            while ((toDecompose >> power) >= 1)
+            for (int power = 2; toDecompose >> power >= 1; power++)
             {
                 var decomposition = BinarySearchable.Range(1, toDecompose).Find(number => TryComparePowerToNumber(number, power, toDecompose));
                 if (decomposition.Power != default || decomposition.Base != default)
@@ -25,8 +24,6 @@ namespace Math.Algorithm
                     var subDecomposition = Decompose(decomposition.Base);
                     return new() { Base = subDecomposition.Base, Power = subDecomposition.Power * decomposition.Power };
                 }
-
-                power++;
             }
 
             return new() { Base = toDecompose, Power = 1 };
