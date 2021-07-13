@@ -22,6 +22,20 @@ namespace Logic.RoundRobin.Implementations
             return generatorResponse.Map(async generator => await generator.GenerateSchedule(participantCount, roundCount));
         }
 
+        public async Task<Response<int, Error>> GetMaxRounds(int participantCount)
+        {
+            if (participantCount <= 0 || participantCount % 4 != 0)
+            {
+                return Response<int, Error>.Failure(new ParticipantCountError());
+            }
+
+            IScheduleGenerator? generator = generators
+                .Where(g => g.MaxRoundCount(participantCount) != null)
+                .OrderByDescending(g => g.MaxRoundCount(participantCount))
+                .FirstOrDefault();
+            return generator == null ? Response<int, Error>.Failure(new ParticipantCountError()) : Response<int, Error>.Success(generator.MaxRoundCount(participantCount).Value);
+        }
+
         public async Task<Response<bool, Error>> ValidateGenerateScheduleRequest(int participantCount, int roundCount)
         {
             Response<IScheduleGenerator, Error> generatorResponse = ValidateParameters(participantCount, roundCount);

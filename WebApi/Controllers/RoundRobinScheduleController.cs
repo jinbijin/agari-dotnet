@@ -1,6 +1,7 @@
 ﻿using Logic.RoundRobin;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading.Tasks;
 using WebApi.Types;
 
@@ -18,20 +19,26 @@ namespace WebApi.Controllers
         }
 
         [EnableCors]
-        [HttpPost]
-        [HttpOptions]
-        public async Task<IActionResult> GenerateSchedule(GenerateScheduleRequest request)
+        [HttpGet]
+        [Route("max-rounds")]
+        public async Task<IActionResult> GetMaxRounds([FromQuery] int participantCount)
         {
-            return Ok(await generator.GenerateSchedule(request.ParticipantCount, request.RoundCount));
+            return Ok(await generator.GetMaxRounds(participantCount));
         }
 
         [EnableCors]
-        [HttpPost]
-        [HttpOptions]
-        [Route("validate")]
-        public async Task<IActionResult> ValidateGenerateScheduleRequest(GenerateScheduleRequest request)
+        [HttpGet]
+        public async Task<IActionResult> GenerateSchedule([FromQuery] int participantCount, [FromQuery] int roundCount)
         {
-            return Ok(await generator.ValidateGenerateScheduleRequest(request.ParticipantCount, request.RoundCount));
+            return Ok(await generator.GenerateSchedule(participantCount, roundCount));
+        }
+
+        [EnableCors]
+        [HttpGet]
+        [Route("validate")]
+        public async Task<IActionResult> ValidateGenerateScheduleRequest([FromQuery] int participantCount, [FromQuery] int roundCount)
+        {
+            return Ok(await generator.ValidateGenerateScheduleRequest(participantCount, roundCount));
         }
     }
 }
