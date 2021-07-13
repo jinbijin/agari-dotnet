@@ -19,16 +19,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.RoundRobin", "Logic.R
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Logic.Common", "Logic.Common\Logic.Common.csproj", "{BB4C43F7-D256-45D1-BA93-DE8BBE58EB79}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.Algorithm", "Math.Algorithm\Math.Algorithm.csproj", "{29F76898-5368-4F63-B0F7-4622A171681D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Traversable", "Traversable\Traversable.csproj", "{F77CF150-88B2-4D6C-8616-C9A5F5E29208}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Math.Algorithm.Tests", "Math.Algorithm.Tests\Math.Algorithm.Tests.csproj", "{80135333-F4A1-4106-9610-FB92A694FF35}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Polynomial", "Math.Polynomial\Math.Polynomial.csproj", "{EE18F6AA-A330-405A-A3C0-A83327C91398}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Math.Field", "Math.Field\Math.Field.csproj", "{0BBAEA9C-4AB1-4D2B-8FE0-8F9139B9762A}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,33 +45,12 @@ Global
 		{BB4C43F7-D256-45D1-BA93-DE8BBE58EB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB4C43F7-D256-45D1-BA93-DE8BBE58EB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB4C43F7-D256-45D1-BA93-DE8BBE58EB79}.Release|Any CPU.Build.0 = Release|Any CPU
-		{29F76898-5368-4F63-B0F7-4622A171681D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{29F76898-5368-4F63-B0F7-4622A171681D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{29F76898-5368-4F63-B0F7-4622A171681D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{29F76898-5368-4F63-B0F7-4622A171681D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F77CF150-88B2-4D6C-8616-C9A5F5E29208}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F77CF150-88B2-4D6C-8616-C9A5F5E29208}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F77CF150-88B2-4D6C-8616-C9A5F5E29208}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F77CF150-88B2-4D6C-8616-C9A5F5E29208}.Release|Any CPU.Build.0 = Release|Any CPU
-		{80135333-F4A1-4106-9610-FB92A694FF35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{80135333-F4A1-4106-9610-FB92A694FF35}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{80135333-F4A1-4106-9610-FB92A694FF35}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{80135333-F4A1-4106-9610-FB92A694FF35}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EE18F6AA-A330-405A-A3C0-A83327C91398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EE18F6AA-A330-405A-A3C0-A83327C91398}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EE18F6AA-A330-405A-A3C0-A83327C91398}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EE18F6AA-A330-405A-A3C0-A83327C91398}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0BBAEA9C-4AB1-4D2B-8FE0-8F9139B9762A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0BBAEA9C-4AB1-4D2B-8FE0-8F9139B9762A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0BBAEA9C-4AB1-4D2B-8FE0-8F9139B9762A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0BBAEA9C-4AB1-4D2B-8FE0-8F9139B9762A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{D613C682-18A7-4E20-9129-8DB498F8DE38} = {DC5D9730-D944-489D-806F-D45D07C43018}
-		{80135333-F4A1-4106-9610-FB92A694FF35} = {DC5D9730-D944-489D-806F-D45D07C43018}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1AC12988-D1AC-4DA3-A57E-FC892D53FE18}
