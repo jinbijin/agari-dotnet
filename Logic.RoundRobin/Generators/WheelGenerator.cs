@@ -45,7 +45,7 @@ namespace Logic.RoundRobin.Generators
                             shuffle[tableCount + ((j + i) % tableCount)],
                             shuffle[2 * tableCount + ((j + 2 * i) % tableCount)],
                             shuffle[3 * tableCount + ((j + 3 * i) % tableCount)]
-                        })).ToList());
+                        }.OrderBy(value => value).ToList())).ToList());
             }
         }
     }
