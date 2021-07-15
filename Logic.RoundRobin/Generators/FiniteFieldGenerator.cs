@@ -1,4 +1,5 @@
 ﻿using AppliedAlgebra.GfPolynoms.GaloisFields;
+using Logic.Common.Random;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
@@ -38,18 +39,21 @@ namespace Logic.RoundRobin.Generators
             int order = _generated.Value.Field.Order;
             int quarter = (order - 1) / 4;
 
-            for (int element = 0; element < order; element++)
+            IList<int> shuffle = Enumerable.Range(0, 3 * order).Shuffle();
+            shuffle.Add(3 * order);
+
+            foreach (int element in Enumerable.Range(0, order).Shuffle())
             {
                 IEnumerable<RoundRobinGame> games = Enumerable.Range(0, 3)
                     .SelectMany(rootIndex => Enumerable.Range(0, quarter).Select(power => (rootIndex, power)))
                     .Select(pair => new RoundRobinGame(new List<int>
                     {
-                        _generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power)) + pair.rootIndex * order,
-                        _generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 2 * quarter)) + pair.rootIndex * order,
-                        _generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + quarter)) + ((pair.rootIndex + 1) % 3) * order,
-                        _generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 3 * quarter)) + ((pair.rootIndex + 1) % 3) * order,
+                        shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power)) + pair.rootIndex * order],
+                        shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 2 * quarter)) + pair.rootIndex * order],
+                        shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + quarter)) + ((pair.rootIndex + 1) % 3) * order],
+                        shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 3 * quarter)) + ((pair.rootIndex + 1) % 3) * order],
                     }.OrderBy(value => value).ToList()))
-                    .Concat(Enumerable.Repeat(new RoundRobinGame(new List<int> { element, element + order, element + 2 * order, 3 * order }), 1));
+                    .Concat(Enumerable.Repeat(new RoundRobinGame(new List<int> { shuffle[element], shuffle[element + order], shuffle[element + 2 * order], shuffle[3 * order] }), 1));
                 yield return new RoundRobinRound(games.ToList());
             }
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Logic.Common.Random;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -32,16 +33,18 @@ namespace Logic.RoundRobin.Generators
 
         private static async IAsyncEnumerable<RoundRobinRound> GenerateRounds(int participantCount)
         {
+            IList<int> shuffle = Enumerable.Range(0, participantCount).Shuffle();
+
             int tableCount = participantCount / 4;
-            for (int i = 0; i < tableCount; i++)
+            foreach (int i in Enumerable.Range(0, tableCount).Shuffle())
             {
                 yield return new RoundRobinRound(Enumerable.Range(0, tableCount)
                     .Select(j => new RoundRobinGame(new List<int>
                         {
-                            j,
-                            tableCount + ((j + i) % tableCount),
-                            2 * tableCount + ((j + 2 * i) % tableCount),
-                            3 * tableCount + ((j + 3 * i) % tableCount)
+                            shuffle[j],
+                            shuffle[tableCount + ((j + i) % tableCount)],
+                            shuffle[2 * tableCount + ((j + 2 * i) % tableCount)],
+                            shuffle[3 * tableCount + ((j + 3 * i) % tableCount)]
                         })).ToList());
             }
         }
