@@ -13,7 +13,8 @@ namespace Logic.RoundRobin.Generators
         {
             "Based on a fixed schedule.",
             "Participant numbers are randomized.",
-            "Table numbers are randomized."
+            "Table numbers are randomized.",
+            "Round selection from the schedule is randomized."
         };
 
         public int? MaxRoundCount(int participantCount)
@@ -46,6 +47,7 @@ namespace Logic.RoundRobin.Generators
             foreach (int i in Enumerable.Range(0, tableCount).Shuffle())
             {
                 yield return new RoundRobinRound(Enumerable.Range(0, tableCount)
+                    .Shuffle()
                     .Select(j => new RoundRobinGame(new List<int>
                         {
                             shuffle[j],
