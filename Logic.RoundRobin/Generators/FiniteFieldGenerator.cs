@@ -14,6 +14,14 @@ namespace Logic.RoundRobin.Generators
 
         public Specificity Specificity => Specificity.Special;
 
+        public IReadOnlyCollection<string> RandomnessSources { get; } = new List<string>
+        {
+            "Based on a fixed schedule.",
+            "Participant numbers are randomized, except for the highest one.",
+            "Table numbers are randomized, except for the last one.",
+            "Round selection from the schedule is randomized."
+        };
+
         public int? MaxRoundCount(int participantCount)
         {
             if (participantCount <= 4 || participantCount % 12 != 4) { return null; }
@@ -30,7 +38,7 @@ namespace Logic.RoundRobin.Generators
 
         public async Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
-            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync());
+            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync(), RandomnessSources);
         }
 
         private async IAsyncEnumerable<RoundRobinRound> GenerateRounds(int participantCount)
@@ -52,8 +60,8 @@ namespace Logic.RoundRobin.Generators
                         shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 2 * quarter)) + pair.rootIndex * order],
                         shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + quarter)) + ((pair.rootIndex + 1) % 3) * order],
                         shuffle[_generated.Value.Field.Add(element,_generated.Value.Field.PowGeneratingElement(pair.power + 3 * quarter)) + ((pair.rootIndex + 1) % 3) * order],
-                    }.OrderBy(value => value).ToList()))
-                    .Concat(Enumerable.Repeat(new RoundRobinGame(new List<int> { shuffle[element], shuffle[element + order], shuffle[element + 2 * order], shuffle[3 * order] }), 1));
+                    }.OrderBy(value => value).ToList())).Shuffle()
+                    .Concat(Enumerable.Repeat(new RoundRobinGame(new List<int> { shuffle[element], shuffle[element + order], shuffle[element + 2 * order], shuffle[3 * order] }.OrderBy(value => value).ToList()), 1));
                 yield return new RoundRobinRound(games.ToList());
             }
         }
