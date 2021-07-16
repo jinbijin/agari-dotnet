@@ -9,6 +9,13 @@ namespace Logic.RoundRobin.Generators
     {
         public Specificity Specificity => Specificity.Generic;
 
+        public IReadOnlyCollection<string> RandomnessSources { get; } = new List<string>
+        {
+            "Based on a fixed schedule.",
+            "Participant numbers are randomized.",
+            "Table numbers are randomized."
+        };
+
         public int? MaxRoundCount(int participantCount)
         {
             int maxRounds = MaxRounds(participantCount);
@@ -17,7 +24,7 @@ namespace Logic.RoundRobin.Generators
 
         public async Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
-            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync());
+            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync(), RandomnessSources);
         }
 
         private static int MaxRounds(int participantCount)

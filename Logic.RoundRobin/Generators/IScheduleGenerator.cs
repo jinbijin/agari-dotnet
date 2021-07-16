@@ -16,6 +16,11 @@ namespace Logic.RoundRobin.Generators
         int? MaxRoundCount(int participantCount);
 
         /// <summary>
+        /// The list of sources of randomness for this schedule generator.
+        /// </summary>
+        IReadOnlyCollection<string> RandomnessSources { get; }
+
+        /// <summary>
         /// Generate a schedule. Parameters are already validated.
         /// </summary>
         Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount);

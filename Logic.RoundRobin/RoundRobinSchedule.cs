@@ -2,5 +2,5 @@
 
 namespace Logic.RoundRobin
 {
-    public record RoundRobinSchedule(IReadOnlyCollection<RoundRobinRound> Rounds);
+    public record RoundRobinSchedule(IReadOnlyCollection<RoundRobinRound> Rounds, IReadOnlyCollection<string> RandomnessSources);
 }

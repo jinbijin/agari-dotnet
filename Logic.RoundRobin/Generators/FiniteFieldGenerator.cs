@@ -14,6 +14,13 @@ namespace Logic.RoundRobin.Generators
 
         public Specificity Specificity => Specificity.Special;
 
+        public IReadOnlyCollection<string> RandomnessSources { get; } = new List<string>
+        {
+            "Based on a fixed schedule.",
+            "Participant numbers are randomized, except for the highest one.",
+            "Table numbers are randomized, except for the last one."
+        };
+
         public int? MaxRoundCount(int participantCount)
         {
             if (participantCount <= 4 || participantCount % 12 != 4) { return null; }
@@ -30,7 +37,7 @@ namespace Logic.RoundRobin.Generators
 
         public async Task<RoundRobinSchedule> GenerateSchedule(int participantCount, int roundCount)
         {
-            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync());
+            return new RoundRobinSchedule(await GenerateRounds(participantCount).Take(roundCount).ToListAsync(), RandomnessSources);
         }
 
         private async IAsyncEnumerable<RoundRobinRound> GenerateRounds(int participantCount)
