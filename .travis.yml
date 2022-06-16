@@ -1,6 +1,6 @@
 language: csharp
 solution: AgariDotNet.sln
-dotnet: 6.0.6
+dotnet: 6.0.301
 os: linux
 dist: bionic
 mono: none
