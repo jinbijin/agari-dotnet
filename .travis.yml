@@ -1,6 +1,6 @@
 language: csharp
 solution: AgariDotNet.sln
-dotnet: 5.0.201
+dotnet: 6.0.6
 os: linux
 dist: bionic
 mono: none
@@ -8,7 +8,7 @@ addons:
   snaps:
   - name: dotnet-sdk
     confinement: classic
-    channel: 5.0
+    channel: 6.0
   ssh_known_hosts:
     secure: retzwEPpCmrGDBkq39ciQXrLzulf1v8XRW/kLXu5JnlqhKSVTx5kA/KEVfEHhRBdXS/ABIUsM9afTVy63oMJvKNWQ8KTwyUm+TrCVmyya4IKlCb3/dUtCvmW8AlH6y72/425w3hOgAPjzw0rO3vG3hT+MKjBSu1pOnx1kaUXqgstZCkrETTttkZ7qxgKi2Qj+4Osl7siRv1QYa+NHtgJaj43KyTahc29lJ1V2Tt5W/0pSMcLREQ9xoS6DljaDRF94BED3XwCewXVL2edXa5vxrBa19of0+P3BzG8HGEj7GrGYi3l27ibSeqTX60WthrGgFrQ+gV13rJTGVN6bXAFK2mX2Cek2MTcKiGt44NMMt0AJCc31pWLjF59fgNMnIxTBXUnmIT4h9nKuD2bQBsfhEOKPEgR+8ZC7YzTehwPlbNwbyIXkRfaB/7gOFgQOQLa8FKU6MdsqRzcUiI8wGGfUnugviJcTypJUcU6rnidRNOF3YeyVJr74M0avKYg+MkCzVynxd+LslLPpJ9deoNTTHEqsW600djjfL0yBlCVKV3bhzgZfsszI/cY5MkN9O7vbfR/Snw1sgSqKTyG/tj4IoG10TqZl0cuCAgTHNXamD8VhXBuMlyBO9xGO+difx/2BCYQmYo1jtTV4hmChX4BzRAYgYTFEl+21ybov3SZCp4=
 script:
