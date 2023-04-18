@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 using Autofac;
 using Logic;
 using Logic.RoundRobin;
@@ -25,7 +26,7 @@ namespace WebApi
         {
             services.AddControllers().AddNewtonsoftJson().AddJsonOptions(config =>
             {
-                config.JsonSerializerOptions.IgnoreNullValues = true;
+                config.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
             });
 
             services.AddCors(options =>
