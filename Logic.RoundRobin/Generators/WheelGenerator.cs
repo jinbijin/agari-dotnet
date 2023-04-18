@@ -44,7 +44,8 @@ namespace Logic.RoundRobin.Generators
             IList<int> shuffle = Enumerable.Range(0, participantCount).Shuffle();
 
             int tableCount = participantCount / 4;
-            foreach (int i in Enumerable.Range(0, tableCount).Shuffle())
+            int maxRoundCount = MaxRounds(participantCount);
+            foreach (int i in Enumerable.Range(0, maxRoundCount).Shuffle())
             {
                 yield return new RoundRobinRound(Enumerable.Range(0, tableCount)
                     .Shuffle()
